@@ -1,0 +1,11 @@
+{
+    "routes": {
+      "/knitAI": {
+        "methods": ["POST"],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://knit-uvnz-hfrx47f2v-culturalprofessor.vercel.app"
+        }
+      }
+    }
+  }
+  
