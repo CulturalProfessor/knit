@@ -4,6 +4,8 @@ import cors from "cors";
 import 'dotenv/config'
 
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
+const TOKEN=process.env.TOKEN
+const TIMEOUT=process.env.TIMEOUT
 
 const app = new Express();
 app.use(bodyParser.json());
@@ -37,7 +39,7 @@ app.post("/knitAI", async (req, res) => {
       model: {
         name: "openai/gpt-4-1106-preview",
         params: {
-          max_tokens: 3000,
+          max_tokens: TOKEN,
         },
       },
       variables: [
@@ -59,7 +61,7 @@ app.post("/knitAI", async (req, res) => {
         "x-auth-token": AUTH_TOKEN,
       },
       body: JSON.stringify(data),
-      timeout: 1200000,
+      timeout: TIMEOUT,
     });
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -79,4 +81,3 @@ app.post("/knitAI", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
- console.log(AUTH_TOKEN)
