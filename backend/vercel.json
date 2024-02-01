@@ -1,5 +1,6 @@
 {
-    "routes": {
+  "routes": [
+    {
       "/knitAI": {
         "methods": ["POST"],
         "headers": {
@@ -7,5 +8,5 @@
         }
       }
     }
-  }
-  
+  ]
+}
