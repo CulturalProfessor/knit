@@ -1,15 +1,21 @@
 import Express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import 'dotenv/config'
+import "dotenv/config";
 
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
-const TOKEN=process.env.TOKEN
-const TIMEOUT=process.env.TIMEOUT
+const TOKEN = process.env.TOKEN;
+const TIMEOUT = process.env.TIMEOUT;
 
 const app = new Express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.listen(3000, () => {
   console.log("Server started on port 3000");

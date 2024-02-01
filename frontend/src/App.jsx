@@ -26,7 +26,7 @@ function App() {
 
       setLoading(true);
       setResultData(null);
-      const response = await axios.post("http://localhost:3000/knitAI", {
+      const response = await axios.post("https://knit-delta.vercel.app/knitAI", {
         number_of_days,
         destination,
       });
