@@ -11,9 +11,9 @@ const app = new Express();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "*",
+    origin: "https://knit-uvnz.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization","Access-Control-Allow-Origin"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -84,6 +84,13 @@ app.post("/knitAI", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+app.options("/knitAI", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "https://knit-uvnz.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.status(200).send();
 });
 
 app.listen(3000, () => {
