@@ -26,10 +26,19 @@ function App() {
 
       setLoading(true);
       setResultData(null);
-      const response = await axios.post("https://knit-delta.vercel.app/knitAI", {
-        number_of_days,
-        destination,
-      });
+      const response = await axios.post(
+        "https://knit-delta.vercel.app/knitAI",
+        {
+          number_of_days,
+          destination,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
       const Text = formattedString(response.data.responseText);
       setResultData(Text);
     } catch (error) {
