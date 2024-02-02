@@ -27,6 +27,8 @@ app.get("/", (req, res) => {
 
 app.post("/knitAI", async (req, res) => {
   try {
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     console.log("Request body:", req.body);
     const url = "https://api.getknit.ai/v1/router/run";
     const { number_of_days, destination } = req.body;
