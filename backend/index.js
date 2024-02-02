@@ -11,9 +11,9 @@ const app = new Express();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "https://knit-uvnz.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization","Origin","X-Requested-With","Accept"],
   })
 );
 
