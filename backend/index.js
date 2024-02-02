@@ -48,7 +48,7 @@ app.post("/knitAI", async (req, res) => {
       model: {
         name: "openai/gpt-4-1106-preview",
         params: {
-          max_tokens: 500,
+          max_tokens: 100,
         },
       },
       variables: [
