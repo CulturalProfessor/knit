@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Markdown from "react-markdown";
+import axios from "axios";
 
 import "./App.css";
 
@@ -25,17 +26,19 @@ function App() {
 
       setLoading(true);
       setResultData(null);
-      const response = await fetch("https://knit-delta.vercel.app/knitAI", {
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "https://knit-delta.vercel.app/knitAI",
+        {
           destination,
           number_of_days,
-        }),
-      });
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
       const Text = formattedString(response.data.responseText);
       setResultData(Text);
     } catch (error) {

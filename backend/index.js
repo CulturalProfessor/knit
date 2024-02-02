@@ -12,13 +12,7 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Origin",
-      "X-Requested-With",
-      "Accept",
-    ],
+   allowedHeaders:"*"
   })
 );
 
@@ -29,7 +23,12 @@ app.get("/", (req, res) => {
 
 app.post("/knitAI", async (req, res) => {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
     res.setHeader("Content-Type", "application/json");
     console.log("Request body:", req.body);
     const url = "https://api.getknit.ai/v1/router/run";
@@ -49,7 +48,7 @@ app.post("/knitAI", async (req, res) => {
       model: {
         name: "openai/gpt-4-1106-preview",
         params: {
-          max_tokens: TOKEN,
+          max_tokens: 1000,
         },
       },
       variables: [
@@ -73,6 +72,7 @@ app.post("/knitAI", async (req, res) => {
       body: JSON.stringify(data),
       timeout: TIMEOUT,
     });
+    console.log("Response status:", response.body);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
