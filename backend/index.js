@@ -8,23 +8,29 @@ const TOKEN = process.env.TOKEN;
 const TIMEOUT = process.env.TIMEOUT;
 
 const app = new Express();
-app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization","Origin","X-Requested-With","Accept"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Origin",
+      "X-Requested-With",
+      "Accept",
+    ],
   })
 );
 
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
 app.post("/knitAI", async (req, res) => {
   try {
-    res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Type", "application/json");
     console.log("Request body:", req.body);
     const url = "https://api.getknit.ai/v1/router/run";
     const { number_of_days, destination } = req.body;
