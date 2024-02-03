@@ -7,14 +7,14 @@
 .header {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #1f6c22;
+  color: #2e86ab;
   font-weight: bold;
 }
 
 .sub_header {
   font-size: 20px;
   margin-bottom: 20px;
-  color: #2b902e;
+  color: #4f97b5;
   font-weight: bold;
 }
 
@@ -34,20 +34,20 @@ input {
   width: 300px;
   padding: 10px;
   outline: none;
-  border: #2b902e 2px solid;
+  border: #4f97b5 2px solid;
   border-radius: 5px;
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-.number_of_days_input {
-  width: 50px;
+.kid_name_input {
+  width: 250px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-.destination_input {
-  width: 300px;
+.theme_input {
+  width: 200px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -60,7 +60,7 @@ input {
 button {
   padding: 10px;
   cursor: pointer;
-  background-color: #4caf50;
+  background-color: #3b6978;
   color: white;
   border: none;
   border-radius: 5px;
@@ -74,7 +74,7 @@ button {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fff;
+  background-color: #b5d2cb;
   border-radius: 5px;
   padding: 20px;
   text-wrap: wrap;
@@ -85,6 +85,7 @@ button {
 .loader {
   margin-top: 20px;
   font-size: 18px;
+  color: #2e86ab;
 }
 
 /* Mobile Responsiveness */
@@ -96,4 +97,9 @@ button {
   .number_of_days_input {
     width: 100%;
   }
+}
+
+label {
+  color: #2e86ab;
+  font-weight: bold;
 }

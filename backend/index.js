@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-   allowedHeaders:"*"
+    allowedHeaders: "*",
   })
 );
 
@@ -32,33 +32,33 @@ app.post("/knitAI", async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     console.log("Request body:", req.body);
     const url = "https://api.getknit.ai/v1/router/run";
-    const { number_of_days, destination } = req.body;
+    const { kid_name, theme } = req.body;
     const data = {
       messages: [
         {
           role: "system",
           content:
-            "Imagine you are the best travel planner in the world, who has traveled all the countries and knows everything about popular places to go, hidden gems, the best time to go, cultural places, outdoor activities, romantic destinations and activities, historic locations, and museums, wildlife attractions, cuisines to try and things and places to shop.",
+            "You are the world's most renowned storyteller, having enchanted young audiences with countless bedtime tales. Your storytelling prowess is unmatched, and you possess a vast imagination to craft magical and captivating narratives for children.",
         },
         {
           role: "user",
-          content: `I am planning to have a ${number_of_days}-day trip to ${destination}. We like to visit popular locations as well as offbeat hidden gems. We prefer medium-paced travel and are interested in visiting cultural places, seeing historic monuments, relaxing on beaches, interacting with wildlife, shopping for souvenirs, and enjoying nightlife. \nPlease plan a day-wise itinerary for the trip along with places to visit and explain the reason to visit each location. Provide the output in list format with details including: \n1. Day (e.g., Day 1)\n2. Primary city for the day\n3. Up to 4 locations to be covered day-wise in the following format:\n- Location title\n- Time to spend\n- Opening hours\n- Distance from the previous location.`,
+          content: `Craft a heartwarming bedtime story featuring a young character named ${kid_name}. The story should revolve around the theme of ${theme}. Be creative, add elements of magic, and make it an enchanting experience for the young listener.`,
         },
       ],
       model: {
         name: "openai/gpt-4-1106-preview",
         params: {
-          max_tokens: 100,
+          max_tokens: 1000,
         },
       },
       variables: [
         {
-          name: "number_of_days",
-          value: `${number_of_days}`,
+          name: "kid_name",
+          value: kid_name,
         },
         {
-          name: "destination",
-          value: `${destination}`,
+          name: "theme",
+          value: theme,
         },
       ],
     };

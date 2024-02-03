@@ -5,8 +5,8 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [number_of_days, setNumber_of_days] = useState("");
-  const [destination, setDestination] = useState("");
+  const [kid_name, setKid_name] = useState("");
+  const [theme, setTheme] = useState("");
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -19,8 +19,8 @@ function App() {
   };
   const handleSearch = async () => {
     try {
-      if (!destination || !number_of_days) {
-        alert("Please enter both destination and number of days.");
+      if (!kid_name || !theme) {
+        alert("Please Enter Kid Name and Theme");
         return;
       }
 
@@ -29,8 +29,8 @@ function App() {
       const response = await axios.post(
         "https://knit-delta.vercel.app/knitAI",
         {
-          destination,
-          number_of_days,
+          theme: theme,
+          kid_name: kid_name,
         },
         {
           headers: {
@@ -50,28 +50,27 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="header">Travelopedia</h1>
+      <h1 className="header">Storify</h1>
       <h2 className="sub_header">
-        A travel planner that helps you plan your trips in a jiffy!
+        Generate Bedtime Stories for your Kids using AI 📚 in a jiffy !
       </h2>
       <div className="search_container">
         <label>
-          Destination:
+          Kid Name:
           <input
             type="text"
-            className="destination_input input"
-            placeholder="Enter destination"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
+            className="kid_name_input"
+            value={kid_name}
+            onChange={(e) => setKid_name(e.target.value)}
           />
         </label>
         <label>
-          Number of Days:
+          Theme:
           <input
             type="text"
-            className="number_of_days_input input"
-            value={number_of_days}
-            onChange={(e) => setNumber_of_days(e.target.value)}
+            className="theme_input"
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
           />
         </label>
         <button onClick={handleSearch} disabled={loading}>
