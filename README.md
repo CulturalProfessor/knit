@@ -1,4 +1,4 @@
-[Screencast from 03-02-24 05:24:09 PM IST.webm](https://github.com/CulturalProfessor/knit/assets/92238941/77ad8ad9-af73-4e7f-8f08-99fe4ae8622f)# Knit Travel Planner
+# Knit Bedtime Story Generator
 
 ## Local Demo
 
